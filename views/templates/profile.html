@@ -1,0 +1,160 @@
+<div class="profile-page">
+	<div class="slider-container">
+	  	<div class="banner1">
+  			<div class="profile-info">
+  				<div class="profile-icon">
+  					<img src="<%=data.headImg%>"/>
+  				</div>
+  				<div class="profile-detail">
+  					<div class="detail-item">
+  						<i class="iconfont">&#xe633;</i>
+  						<span><%=data.wechatName%></span>
+  					</div>
+  					<div class="detail-item">
+  						<i class="iconfont">&#xe632;</i>
+  						<span><%=data.mobile%></span>
+  					</div>
+  				</div>
+  			</div>
+	  	</div>
+	</div>
+	<div class="main-container">
+		<div class="tabs-title">
+			我的订单
+		</div>
+		<div class="table order-tabs">
+			<div class="row">
+				<div class='tabs-orders'>
+					<figure>
+						<div class='tabs-num-box'>
+							<i class="iconfont">&#xe629;</i>
+						</div>
+						<figcaption>全部订单</figcaption>
+					</figure>
+				</div>
+				<div class='tabs-wait-pay'>
+					<figure>
+						<div class='tabs-num-box'>
+							<i class="iconfont">&#xe626;</i>
+							<%if(!!data.waitpay){%>
+								<div class="order-tabs-num wait-pay-num">
+									<%=data.waitpay%>
+								</div>
+							<%}%>
+						</div>
+						<figcaption>待付款</figcaption>
+					</figure>
+				</div>
+				<div class='tabs-wait-comment'>
+					<figure>
+						<div class='tabs-num-box'>
+							<i class="iconfont">&#xe627;</i>
+							<%if(!!data.waitevaluate){%>
+								<div class="order-tabs-num wait-comment-num">
+									<%=data.waitevaluate%>
+								</div>
+							<%}%>
+						</div>
+						<figcaption>待评价</figcaption>		
+					</figure>
+				</div>
+				<div class='tabs-wait-service'>
+					<figure>
+						<div class='tabs-num-box'>
+							<i class="iconfont">&#xe625;</i>
+							<%if(!!data.waitservice){%>
+								<div class="order-tabs-num wait-service-num">
+									<%=data.waitservice%>
+								</div>
+							<%}%>
+						</div>
+						<figcaption>待服务</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+		<div class="menu-top table">
+			<div class="row to-coupons">
+				<div class="menu-icon">
+					<i class="iconfont" style="color:#f8ae88;">&#xe62f;</i>
+				</div>
+				<div>
+					<span class="menu-des">可用优惠券</span>
+				</div>
+				<div>
+					<span class="menu-right coupons-count"><%=data.usercoupon%>&nbsp;张</span>
+				</div>
+			</div>	
+			<div class="row">
+				<div class="menu-icon">
+					<i class="iconfont" style="color:#5db646;">&#xe630;</i>
+				</div>
+				<div>
+					<span class="menu-des">余额</span>
+				</div>
+				<div>
+					<span class="menu-right"><%=data.balance%>&nbsp;元</span>
+				</div>
+			</div>		
+			<div class="row to-recharge">
+				<div class="menu-icon">
+					<i class="iconfont" style="color:#b15fc6;">&#xe62a;</i>
+				</div>
+				<div>
+					<span class="menu-des">我要充值</span>
+				</div>
+				<div>
+					<i class="iconfont icon-arrow">&#xe616;</i>
+				</div>
+			</div>	
+			<div class="row to-address">
+				<div class="menu-icon">
+					<i class="iconfont" style="color:#ff723b;">&#xe62c;</i>
+				</div>
+				<div>
+					<span class="menu-des">服务地址</span>
+				</div>
+				<div>
+					<i class="iconfont icon-arrow">&#xe616;</i>
+				</div>
+			</div>
+			<div class="row">
+				<div class="menu-icon">
+					<i class="iconfont" style="color:#4ba7f9">&#xe62d;</i>
+				</div>
+				<div>
+					<span class="menu-des">账户积分</span>
+				</div>
+				<div>
+					<%if(data.integral==null){%>
+						<span class="menu-right">0 分</span>
+					<%}else{%>
+						<span class="menu-right"><%=data.integral%>&nbsp;分</span>
+					<%}%>
+				</div>
+			</div>
+			<div class="row to-feedback">
+				<div class="menu-icon">
+					<i class="iconfont" style="color:#00d3d3;">&#xe62e;</i>
+				</div>
+				<div>
+					<span class="menu-des">意见反馈</span>
+				</div>
+				<div>
+					<i class="iconfont icon-arrow">&#xe616;</i>
+				</div>
+			</div>
+			<div class="row to-bill">
+				<div class="menu-icon">
+					<i class="iconfont" style="color:#8078e6;">&#xe631;</i>
+				</div>
+				<div>
+					<span class="menu-des">账单明细</span>
+				</div>
+				<div>
+					<i class="iconfont icon-arrow">&#xe616;</i>
+				</div>
+			</div>		
+		</div> 
+	</div>
+</div>

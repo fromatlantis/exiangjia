@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta charset="utf-8">
+<meta name="description" content="e享家最好的家政服务平台，最专业的上门保洁服务">
+<meta name="keywords" content="家政, 保洁, 上门, e享家">
+<!-- Mobile Specific Metas-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>填写订单</title>
+
+<link href="./stylesheets/wx/ejia5.css?2016020261" rel="stylesheet" type="text/css" />
+<link href="./javascripts/plugins/mobiscroll/mobiscroll.scroller.css" rel="stylesheet" type="text/css">
+<link href="./javascripts/plugins/mobiscroll/mobiscroll.scroller.android-ics.css?2016030500" rel="stylesheet" type="text/css">
+<script src="./javascripts/require.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dbLtYZuDg9QWnh80wp9jbOgE"></script>
+</head>
+<body>
+<div class="container">
+	<div class="main">
+		<div class="fillOrder-page page"></div>
+		<div class="newAddress-page page">
+			<div class="wrap">
+				<div class="address-base">
+					<div class="address-tips">
+						<p>为了更好的为您服务，请填写服务地址</p>
+					</div>
+					<div class="new-address">
+						<div class="new-address-icon">
+							<i class="iconfont">&#xe624;</i>
+						</div>
+						<div class="address-house">
+							<input type="text" placeholder='请输入您的小区或大厦地址' id="address-house">
+							<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+							<input type='hidden' id="house-check"/>
+						</div>
+					</div>
+					<div id="l-map"></div>
+					<div class="new-address address-detail">
+						<div class="new-address-icon">
+							<i class="iconfont">&#xe628;</i>
+						</div>
+						<div class="address-house address-door">
+							<input type="text" placeholder='请填写您的楼宇单元门牌号' id="address-door">
+						</div>
+					</div>
+					<input type="hidden" id="addressId"/>
+				</div>
+				<div class="address-list"></div>
+			</div>
+			<div class="btn-chip">
+				<button type="button" class="btn btn-submit new-address-btn">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-overlay">
+	<div class="page-tips"></div>
+</div>
+<script src="./javascripts/plugins/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="./javascripts/plugins/mobiscroll/mobiscroll.js" type="text/javascript"></script>
+<script src="./javascripts/plugins/mobiscroll/mobiscroll.datetime.js?2016021815" type="text/javascript"></script>
+<script type="text/javascript" src='./javascripts/wx/common.js?20160202108'></script>
+<script type="text/javascript" src='./javascripts/wx/newOrderNurse.js?20160202108'></script>
+
+<script type="text/javascript">
+	// 百度地图API功能
+	function G(id) {
+		return document.getElementById(id);
+	}
+
+	var map = new BMap.Map("l-map");
+	map.centerAndZoom("石家庄",12);                   // 初始化地图,设置城市和地图级别。
+
+	var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+		{"input" : "address-house"
+		,"location" : map
+	});
+
+	ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+	var str = "";
+		var _value = e.fromitem.value;
+		var value = "";
+		if (e.fromitem.index > -1) {
+			value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+		}    
+		str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+		
+		value = "";
+		if (e.toitem.index > -1) {
+			_value = e.toitem.value;
+			value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+		}    
+		str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+		G("searchResultPanel").innerHTML = str;
+	});
+
+	var myValue;
+	ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+	var _value = e.item.value;
+		myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+		G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+		
+		setPlace();
+	});
+
+	function setPlace(){
+		map.clearOverlays();    //清除地图上所有覆盖物
+		function myFun(){
+			var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+			map.centerAndZoom(pp, 18);
+			map.addOverlay(new BMap.Marker(pp));    //添加标注
+			$('#house-check').val(myValue);
+			sessionStorage.baiduMapLng=pp.lng;
+			sessionStorage.baiduMapLat=pp.lat;
+		}
+		var local = new BMap.LocalSearch(map, { //智能搜索
+		  onSearchComplete: myFun
+		});
+		local.search(myValue);
+	}
+</script>
+</body>
+</html>

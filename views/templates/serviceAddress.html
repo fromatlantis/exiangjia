@@ -1,0 +1,26 @@
+<div class="address-page">
+	<%if(type=='profile'){%>
+		<%if(data.length==0){%>
+			<div class="no-order">
+				<img src='/images/wx/profile/no-address.png'/>
+				<p>暂无服务地址，快去下单吧~</p>
+			</div>
+		<%}%>
+	<%}%>
+	<%for(var i=0;i<data.length;i++){%>
+		<div class="table" data-address-id="<%=data[i].id%>" data-address-lng="<%=data[i].baiduMapLng%>" data-address-lat="<%=data[i].baiduMapLat%>">
+			<div class='row'>
+				<div class="address-icon">
+					<i class="iconfont">&#xe624;</i>
+				</div>
+				<div class="address-item">
+					<p class="area"><%=data[i].addressArea%></p>
+					<p class="house"><%=data[i].addressHouse%></p>
+				</div>
+				<div class="address-del" style="display:none;" data-address-id="<%=data[i].id%>">
+					删除
+				</div>
+			</div>
+		</div>
+	<%}%>
+</div>

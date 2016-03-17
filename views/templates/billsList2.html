@@ -1,0 +1,43 @@
+
+<%	if(!!data&&!!data.list){
+	for(var i=0;i<data.list.length;i++){%>
+	<div class="bills-item table">
+		<div class="row">
+			<div class="bill-date">
+				<!--<p>周五</p>-->
+				<p><%=data.list[i].createtime%></p>
+			</div>
+			<div class="bill-icon">
+				<%if(!data.list[i].servicename){%>
+					<img src='/images/wx/profile/balance-bill.png'/>
+				<%}else if(data.list[i].serviceclass=='0001000300010001'){%>
+					<img src='/images/wx/housekeeping/daily.png'/>
+				<%}else if(data.list[i].serviceclass=='0001000300010002'){%>
+					<img src='/images/wx/housekeeping/depth.png'/>
+				<%}else if(data.list[i].serviceclass=='0001000300020001'){%>
+					<img src='/images/wx/cleaning/window.png'/>
+				<%}else if(data.list[i].serviceclass=='0001000300020002'){%>
+					<img src='/images/wx/cleaning/window.png'/>
+				<%}%>
+			</div>
+			<%if(data.list[i].money>0){%>
+				<div class="bill-num num-green">
+					+<%=parseInt(data.list[i].money).toFixed(2)%>
+				</div>
+			<%}else{%>
+				<div class="bill-num num-red">
+					<%=parseInt(data.list[i].money).toFixed(2)%>
+				</div>
+			<%}%>
+			<%if(!data.list[i].servicename){%>
+				<div class="bill-des">
+					充值
+				</div>
+			<%}else{%>
+				<div class="bill-des">
+					<%=data.list[i].servicename%>
+				</div>
+			<%}%>
+		</div>
+	</div>
+<%}}%>

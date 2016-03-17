@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>wechat</title>
+	<script type="text/javascript" src="./plugins/zepto.min.js"></script>
+</head>
+<body>
+
+	<script type="text/javascript">
+
+	function hasAuth(){
+		var code=urlParam('code');
+		var appId='wx9e60458de7e99750';
+		var currentUrl=window.location;
+		if(!code){
+			window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appId+'&redirect_uri='+url+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';	
+		}
+	}
+	function urlParam(key){
+	 	var reg = new RegExp("(^|&)"+ key +"=([^&]*)(&|$)");
+     	var r = window.location.search.substr(1).match(reg);
+     	if(r!=null) return unescape(r[2]); return null;
+	}
+	hasAuth();
+	</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<div class="wrap">
+	<div class="page-overlay"></div>
+	<div class="fill-top">
+		<div class="fill-item fill-address">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe61f;</i>
+			</div>
+			<div class="fill-des">
+				<span id='appAddress'>请选择服务地点</span>
+			</div>
+			<div class="arrow">
+				<i class="iconfont icon-arrow">&#xe616;</i>
+			</div>
+		</div>
+		<div class="fill-item fill-time">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe621;</i>
+			</div>
+			<div class="fill-des">
+				<%if(serviceType=='nurse'){%>
+					<%if(serviceclass=='0001000300030001'){%>
+						<input type='text' id='appDate' placeholder='请选择预产期' readonly="readonly" required="required"/>
+					<%}else{%>
+						<input type='text' id='appDate' placeholder='请选择服务时间' readonly="readonly" required="required"/>
+					<%}%>
+				<%}else{%>
+					<input type='text' id='appDate' placeholder='请选择服务时间' readonly="readonly" required="required"/>
+				<%}%>
+			</div>
+		</div>
+		<!--
+		<div class="fill-item">
+			<div class="fill-icon fill-coupons">
+				<img src="/images/wx/order/fill/coupons.png"/>
+			</div>
+			<div class="fill-des">
+				<span>请选择优惠券</span>
+			</div>
+			<div class="arrow">
+				<img src='/images/wx/arrow.png'/>
+			</div>
+		</div>
+		-->
+		<div class="fill-item fill-phone">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe622;</i>
+			</div>
+			<div class="fill-des">
+				<%if(data&&data.mobile){%>
+				<input type='text' id='appPhone' placeholder='请填写手机号' value="<%=data.mobile%>"/>
+				<%}else{%>
+					<input type='text' id='appPhone' placeholder='请填写手机号' readonly="readonly" />
+				<%}%>
+			</div>
+		</div>
+		<%if(serviceType=='cleanWindow' || serviceType=='wasteland'){%>
+			<div class="fill-item fill-area">
+				<div class="fill-icon">
+					<i class="iconfont">&#xe620;</i>
+				</div>
+				<div class="fill-des">
+					<input type='text' id='appArea' placeholder='请填写房屋面积'/>
+				</div>
+			</div>
+		<%}%>
+		<%if(serviceType!='nurse'){%>
+			<div class="fill-item fill-myAunt">
+				<div class="fill-des go-myAunt">
+					<span id='myAunt'>前去指定手艺人</span>
+				</div>
+				<div class="arrow">
+					<i class="iconfont icon-arrow">&#xe616;</i>
+				</div>
+			</div>
+		<%}%>
+	</div>
+	<div class="fill-bot">
+		<%if(serviceType=='nurse'){%>
+			<%if(serviceclass=='0001000300030003'){%>
+				<div class="fill-item nurse-remark">
+					<textarea id="customRemark" placeholder="请填写您的具体需求（如：保姆性格、技能需求、忌讳等）
+"></textarea>
+				</div>
+			<%}else if(serviceclass=='0001000300030001'){%>
+				<div class="fill-item nurse-remark">
+					<textarea id="customRemark" placeholder="请填写您的具体需求（如：月嫂性格、技能需求、忌讳等）
+"></textarea>
+				</div>
+			<%}else if(serviceclass=='0001000300030002'){%>
+				<div class="fill-item nurse-remark">
+					<textarea id="customRemark" placeholder="请填写您的具体需求（如：育婴师性格、技能需求、忌讳等）
+"></textarea>
+				</div>
+			<%}%>
+		<%}else{%>
+			<div class="fill-item to-aunt">
+				<div class="fill-icon">
+					<i class="iconfont">&#xe61e;</i>
+				</div>
+				<div class="fill-des">
+					<%if(serviceType!='nurse'){%>
+						<span>给手艺人捎个话</span>
+					<%}else{%>
+						<span>填写您的要求</span>
+					<%}%>
+				</div>
+			</div>
+			<div class="fill-insurance">
+				<p>
+					免费为您投保2万财产损失险
+				</p>
+				<p>
+					以及手艺人5万意外伤害
+				</p>
+			</div>
+		<%}%>
+	</div>
+</div>
+<div class="fill-btn-box">
+	<button type="button" class="btn btn-submit order-btn">提交订单</button>
+</div>

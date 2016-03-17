@@ -1,0 +1,44 @@
+<%
+	var menu_icon;
+	var home = "/images/wx/home/home.png";
+	var order = "/images/wx/home/order.png";
+	var profile = "/images/wx/home/profile.png";
+	if(current==1){
+		home = "/images/wx/home/home_current.png";
+	}
+	if(current==2){
+		order = "/images/wx/home/order_current.png";
+	}
+	if(current==3){
+		profile = "/images/wx/home/profile_current.png";
+	}
+%>
+<div class="menu">
+	
+	<div class="toolbar<%if(current==1){%> current<%}%> home">
+		<a href='home.html'>
+			<figure>
+		    	<img src="<%=home%>" alt="...">
+		    	<figcaption>首页</figcaption>
+	  		</figure>
+		</a>
+	</div>
+
+	<div class="toolbar<%if(current==2){%> current<%}%> order">
+		<a href='order.html'>
+			<figure>
+		    	<img src="<%=order%>" alt="...">
+		    	<figcaption>订单</figcaption>
+	  		</figure>
+  		</a>
+	</div>
+
+	<div class="toolbar<%if(current==3){%> current<%}%> profile">
+		<a href='profile.html'>
+			<figure>
+		    	<img src="<%=profile%>" alt="...">
+		    	<figcaption>我的</figcaption>
+	  		</figure>
+  		</a>
+	</div>
+</div>

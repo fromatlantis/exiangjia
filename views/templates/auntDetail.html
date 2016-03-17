@@ -1,0 +1,63 @@
+<div class="slider-container">
+	<div class="aunt-info">
+		<div class="aunt-icon">
+			<%if(!!data.icon){%>
+				<img src="http://www.exiangjia.com/<%=data.icon%>"/>
+			<%}else{%>
+				<img src="/images/wx/aunt_logo.png"/>
+			<%}%>
+			<p><%=data.realname%></p>
+		</div>
+		<div class="aunt-detail">
+			<div class="detail-item">
+				<div class="aunt-level">
+					<%if(data.startlevel){%>
+						<%for(var i=0;i<data.startlevel;i++){%>
+							<i class="iconfont icon-star"></i>
+						<%}%>
+					<%}else{%>
+						<i class="iconfont icon-star"></i>
+					<%}%>
+				</div>
+			</div>
+			<div class="detail-item">
+				<span>年龄：<span class="info-title"><%=data.age%>岁</span></span>
+				<span class="aunt-experience">经验：<span class="info-title"><%=data.experience%>年</span></span>
+			</div>
+			<div class="detail-item">
+				<span>身份证：<span class="info-title"><%=data.idcard%></span></span><span class="auth">验</span>
+			</div>
+			<div class="detail-item">
+				<span>籍贯：<span class="info-title"><%=data.useraddress%></span></span>
+			</div>
+			<div class="detail-item">
+				<span>所属家政：<span class="info-title"><%=data.commercialname%></span></span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="order-appraise-title">
+	<p>以往客户评价</p>
+</div>
+<div class="order-appraise">
+	<div class="appraise-card">
+		<div>
+			<figure>
+				<p><i class="iconfont if-3x icon-good"></i></p>
+				<figcaption>好评（<%=data.goodNum%>）</figcaption>
+			</figure>
+		</div>
+		<div>
+			<figure>
+				<p><i class="iconfont if-3x icon-average"></i></p>
+				<figcaption>中评（<%=data.averageNum%>）</figcaption>
+			</figure>
+		</div>
+		<div>
+			<figure>
+				<p><i class="iconfont if-3x icon-bad"></i></p>
+				<figcaption>差评（<%=data.badNum%>）</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>

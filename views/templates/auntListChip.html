@@ -1,0 +1,33 @@
+<div class="service-item" data-userid="<%=data.providerId%>" data-price="<%=data.price%>" data-commercialid="<%=data.commercialid%>">
+	<div class="aunt-company">
+		<%=data.commercialname%>
+	</div>
+	<figure>
+		<div class="aunt-icon">
+			<%if(!!data.icon){%>
+				<img src="http://shangjia.exiangjia.com/<%=data.icon%>"/>
+			<%}else{%>
+				<img src="/images/wx/aunt_logo.png"/>
+			<%}%>
+		</div>
+		<figcaption>
+			<span><%=data.realname%></span>
+			<div class="aunt-level">
+				<%if(data.startlevel){%>
+					<%for(var j=0;j<data.startlevel;j++){%><!--不能用i循环了..-->
+						<i class="iconfont icon-star"></i>
+					<%}%>
+				<%}else{%>
+					<i class="iconfont icon-star"></i>
+				<%}%>
+			</div>
+		</figcaption>
+		<figcaption class="aunt-info-other">
+			<span>价格：￥<%=data.price%>/<%=data.unit%></span>
+			<p>工作经验：<%=data.experience%>年</p>
+		</figcaption>
+		<div class="arrow">
+			<img src="/images/wx/arrow.png"/>
+		</div>
+	</figure>
+</div>

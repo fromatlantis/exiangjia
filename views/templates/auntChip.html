@@ -1,0 +1,23 @@
+<div class="order-appraise">
+	<p>您对<%=data.realname%>手艺人的评价</p>
+	<div class="appraise-card">
+		<div class="appraise-a" data-score="100">
+			<figure>
+				<i class="iconfont icon-good"></i>
+				<figcaption>好评（<label class="appraise-num"><%=data.goodNum%></label>）</figcaption>
+			</figure>
+		</div>
+		<div class="appraise-b" data-score="60">
+			<figure>
+				<i class="iconfont icon-average"></i>
+				<figcaption>中评（<label class="appraise-num"><%=data.averageNum%></label>）</figcaption>
+			</figure>
+		</div>
+		<div class="appraise-c" data-score="20">
+			<figure>
+				<i class="iconfont icon-bad"></i>
+				<figcaption>差评（<label class="appraise-num"><%=data.badNum%></label>）</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>

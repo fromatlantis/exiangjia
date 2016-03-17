@@ -1,0 +1,64 @@
+<div class="recharge-page">
+  <div class="not-vip">
+    <div class="vip-logo">
+      <%if(isMember==1){%>
+        <i class="iconfont" style="color:#f8ae00;">&#xe639;</i>
+      <%}else{%>
+        <i class="iconfont">&#xe639;</i>
+      <%}%>
+    </div>
+    <div class="vip-tips">
+      <%if(isMember==0){%>
+        <p>您还不是会员，立即充值</p>
+      <%}%>
+      <p>开始e享家，体验贴心服务</p>
+    </div>
+  </div>
+  <%for(var i=0;i<data.length;i++){%>
+    <div class="charge-item">
+      <div class="table">
+        <div class="charge-price">
+          <span>充<%=data[i].money%>送<%=data[i].presentermoney%></span>
+        </div>
+        <div class="charge-btn" data-price="<%=data[i].money%>">
+          <button type="button" class="btn btn-submit btn-small">充值</button>
+        </div>
+      </div>
+    </div>
+  <%}%>
+  <div class="vip-code-container">
+    <div class="vip-code-box">
+      <div class="vip-code">
+        <span>会员卡兑换码</span>
+      </div>
+    </div>
+    <div class="vip-change">
+      <input type="text" class="change-code" placeholder="请输入您的兑换码"/>
+      <button type="button" class="btn btn-submit btn-medium" id="change-btn">兑换</button>
+    </div>
+  </div>
+  <div class="vip-code-tips">
+    会员使用说明
+  </div>
+  <div class="vip-privilege">
+    <p>会员服务特权</p>
+    <div class="vip-privilege-box">
+      <figure>
+        <i class="iconfont">&#xe638;</i>
+        <figcaption>充值立即返券</figcaption>
+      </figure>
+      <figure>
+        <i class="iconfont">&#xe63a;</i>
+        <figcaption>会员快捷支付</figcaption>
+      </figure>
+      <figure>
+        <i class="iconfont">&#xe63b;</i>
+        <figcaption>会员一卡通</figcaption>
+      </figure>
+      <figure>
+        <i class="iconfont">&#xe63c;</i>
+        <figcaption>全面服务保障</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="wrap">
+	<div class="page-overlay"></div>
+	<div class="fill-top">
+		<div class="fill-item fill-address">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe61f;</i>
+			</div>
+			<div class="fill-des">
+				<span id='appAddress'>请选择服务地点</span>
+			</div>
+			<div class="arrow">
+				<i class="iconfont icon-arrow">&#xe616;</i>
+			</div>
+		</div>
+		<div class="fill-item fill-time">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe621;</i>
+			</div>
+			<div class="fill-des">
+				<input type='text' id='appDate' placeholder='请选择服务时间' readonly="readonly" required="required"/>
+			</div>
+		</div>
+		<div class="fill-item fill-phone">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe622;</i>
+			</div>
+			<div class="fill-des">
+				<%if(data&&data.mobile){%>
+				<input type='text' id='appPhone' placeholder='请填写手机号' value="<%=data.mobile%>"/>
+				<%}else{%>
+					<input type='text' id='appPhone' placeholder='请填写手机号' readonly="readonly" />
+				<%}%>
+			</div>
+		</div>
+		<div class="fill-item fill-fotile-type">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe623;</i>
+			</div>
+			<div class="fill-des">
+				<span id='appFotile'>请选择油烟机种类</span>
+			</div>
+			<div class="arrow">
+				<i class="iconfont icon-arrow">&#xe616;</i>
+			</div>
+		</div>
+		<div class="fill-item fill-myAunt">
+			<div class="fill-des go-myAunt">
+				<span id='myAunt'>前去指定手艺人</span>
+			</div>
+			<div class="arrow">
+				<i class="iconfont icon-arrow">&#xe616;</i>
+			</div>
+		</div>
+	</div>
+	<div class="fill-bot">
+		<div class="fill-item to-aunt">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe61e;</i>
+			</div>
+			<div class="fill-des">
+				<span>给手艺人捎个话</span>
+			</div>
+		</div>
+		<div class="fill-insurance">
+			<p>
+				免费为您投保2万财产损失险
+			</p>
+			<p>
+				以及手艺人5万意外伤害
+			</p>
+		</div>
+	</div>
+</div>
+<div class="fill-btn-box">
+	<button type="button" class="btn btn-submit order-btn">提交订单</button>
+</div>

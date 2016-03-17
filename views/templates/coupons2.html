@@ -1,0 +1,90 @@
+<div class="coupons-page">
+  <div class="exchange-box">
+    <div class="form-box">
+      <input type='text' name='' class='coupons-code' placeholder="请输入兑换码">
+    </div>
+    <button type="button" class="btn btn-submit btn-small change-code">兑换</button>
+  </div>
+  <%if(data==null){%>
+    <div>
+      <div class="coupons-tips">
+        <span>请您注意，优惠券仅限微信支付的订单使用，如果您没有微信支付，
+        请开通我i恶心支付后再使用优惠券。</span>
+      </div>
+      <div class="coupons-list">
+        <div class="none-coupons">
+          <img src="/images/wx/profile/coupons_big.png"/>
+          <p>暂无可用的代金券哦~</p>
+        </div>
+      </div>
+      <button type="button" class="btn btn-submit coupons-not">本次不使用优惠券</button>
+    </div>
+  <%}else{%>
+    <%for(var i=0;i<data.length;i++){%>
+      <div class="coupons-chip">
+        <div class='table'>
+          <div class='row'>
+            <%if(data[i].state==2||data[i].isOut){%>
+              <div class="coupons-border">
+                <img src="/images/wx/profile/coupons/grey.png"/>
+              </div>
+              <div class="coupons-blue coupons-disable">
+                <div class="coupons-type">
+                  <%=data[i].serviceType%>
+                </div>
+                <div class="coupons-num">
+                  ￥<span><%=data[i].money%></span>
+                </div>
+              </div>
+            <%}else if(data[i].serviceType=='通用券'){%>
+              <div class="coupons-border">
+                <img src="/images/wx/profile/coupons/blue.png"/>
+              </div>
+              <div class="coupons-blue">
+                <div class="coupons-type">
+                  <%=data[i].serviceType%>
+                </div>
+                <div class="coupons-num">
+                  ￥<span><%=data[i].money%></span>
+                </div>
+              </div>
+            <%}else if(data[i].serviceType=='家证券'){%>
+              <div class="coupons-border">
+                <img src="/images/wx/profile/coupons/yellow.png"/>
+              </div>
+              <div class="coupons-yellow">
+                <div class="coupons-type">
+                  <%=data[i].serviceType%>
+                </div>
+                <div class="coupons-num">
+                  ￥<span><%=data[i].money%></span>
+                </div>
+              </div>
+            <%}else if(data[i].serviceType=='清洁券'){%>
+              <div class="coupons-border">
+                <img src="/images/wx/profile/coupons/green.png"/>
+              </div>
+              <div class="coupons-green">
+                <div class="coupons-type">
+                  <%=data[i].serviceType%>
+                </div>
+                <div class="coupons-num">
+                  ￥<span><%=data[i].money%></span>
+                </div>
+              </div>
+            <%}%>
+            <div class="coupons-right">
+              <p>使用期限</p>
+              <p><%=data[i].begtime.split(' ')[0]%>-<%=data[i].expirdDate.split(' ')[0]%></p>
+              <%if(data[i].state==2){%>
+                <img src='/images/wx/profile/coupons/used.png' class="coupons-out"/>
+              <%} else if(data[i].isOut){%>
+                <img src='/images/wx/profile/coupons/out.png' class="coupons-out"/>
+              <%}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%}%>
+  <%}%>  
+</div>

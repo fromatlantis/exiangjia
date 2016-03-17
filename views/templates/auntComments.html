@@ -1,0 +1,13 @@
+<%if(!!data){%>
+	<%for(var i=0;i<data.length;i++){%>
+	<div class="comments-item">
+		<div class="comments-detail">
+			<p class="comments-time">
+				客户：<%=data[i].mobile%>
+				<label class="comments-phone"><%=data[i].creationDate.split(' ')[0]%></label>
+			</p>
+			<p><%=data[i].contents%></p>
+		</div>
+	</div>
+	<%}%>
+<%}%>

@@ -1,0 +1,352 @@
+<div class="order-detail-page">
+	<div class="title">
+		<%=title%>
+		<%if(status=='waitService'){%>
+			<img  class="refresh" src='/images/wx/order/detail/refresh.png'/>
+			<span class="order-cancel">取消订单</span>
+		<%}%>
+		<%if(status=='searchAunt'){%>
+			<span class="order-cancel">取消订单</span>
+		<%}%>
+	</div>
+	<%if(status=='waitAppraise' || status=='cancelOrder' || status=='searchAunt' || status=='nurse'){%> 
+		<div class="order-detail">
+			<li class="menu-item">
+				<div>
+					<i class="iconfont">&#xe61f;</i>
+					<span class="menu-des"><%=orderInfo.addressArea%></span>
+				</div>
+			</li>
+			<li class="menu-item">
+				<div>
+					<i class="iconfont">&#xe636;</i>
+					<%if(orderInfo.ordertype==1){%>
+						<%
+							var beginArr=orderInfo.orderAgreedTime.split(' ');
+							var endArr=orderInfo.orderDurationTime.split(' ');
+						%>
+						<span class="menu-des">
+							<%=beginArr[0]%> - <%=endArr[0]%>&nbsp;&nbsp;<%=beginArr[1]%> - <%=endArr[1]%>
+						</span>
+					<%}else{%>
+						<span class="menu-des"><%=orderInfo.orderAgreedTime%></span>
+					<%}%>		
+				</div>
+				<%if(orderInfo.ordertype==1){%>
+					<div class='date-card'>
+						<%orderInfo.cycleList.forEach(function(item){%>
+							<div class="<%if(item.isservice==1){%>fill-current<%}%>"><%=item.orderAgreedTime%></div>
+						<%})%>
+					</div>
+				<%}%>
+			</li>
+			<%if(!!orderInfo.confirmnum){%>
+			<li class="menu-item">
+				<div>
+					<%if(orderInfo.serviceclassUnit=='台'){%>
+						<i class="iconfont">&#xe623;</i>
+					<%}else{%>
+						<i class="iconfont">&#xe621;</i>
+					<%}%>
+					<span class="menu-des"><%=orderInfo.confirmnum%><%=orderInfo.serviceclassUnit%></span>
+				</div>
+			</li>
+			<%}%>
+			<%if(!!orderInfo.couponValue){%>
+				<li class="menu-item">
+					<div>
+						<i class="iconfont">&#xe637;</i>
+						<span class="menu-des">优惠券：<%=orderInfo.couponValue%></span>
+					</div>
+				</li>
+			<%}%>
+			<li class="menu-item remark">
+				<div>
+					<span>备注：</span>
+					<span class="menu-des"><%=orderInfo.customerRemark%></span>
+				</div>
+			</li>
+		</div>
+		<%if(status=='searchAunt'){%>
+			<div class="wait-service">
+				<div class="submit-box">
+					<button type="button" class="btn btn-submit search-aunt-btn">去选择手艺人</button>
+				</div>
+			</div>
+		<%}else if(status=='nurse'){%>
+			<li class="menu-item">
+				<div>
+					<span class="menu-des">您的订单信息已发送，请耐心等待。如有任何问题，请在e享家微信公众号（e享家）留言或拨打400-8809-205。</span>
+				</div>
+			</li>
+			<div class="wait-service">
+				<div class="submit-box">
+					<button type="button" class="btn btn-submit search-aunt-btn">返回订单列表</button>
+				</div>
+			</div>
+		<%}else if(status=='waitAppraise'){%>
+			<div class="wait-appraise">
+				<div class="aunt-chip"></div>
+				<%if(!orderInfo.providerJudgeLevel){%>
+					<div class="order-appraise appraise-other">
+						<p>补充说明：</p>
+						<div class="appraise-tips-box">
+							<textarea class="appraise-tips" placeholder="对手艺人的服务说点什么吧"></textarea>
+						</div>
+					</div>
+					<div class="submit-box">
+						<button type="button" class="btn btn-submit" id="submitComment">提交评价</button>
+					</div>
+				<%}else{%>
+					<div class="order-appraise">
+						<div class="appraise-card">
+							<div>
+								<figure>
+									<%if(orderInfo.providerJudgeLevel==100){%>
+										<i class="iconfont icon-goodh"></i>
+									<%}else{%>
+										<i class="iconfont icon-good"></i>
+									<%}%>
+									<figcaption>好评</figcaption>
+								</figure>
+							</div>
+							<div>
+								<figure>
+									<%if(orderInfo.providerJudgeLevel==60){%>
+										<i class="iconfont icon-averageh"></i>
+									<%}else{%>
+										<i class="iconfont icon-average"></i>
+									<%}%>
+									<figcaption>中评</figcaption>
+								</figure>
+							</div>
+							<div>
+								<figure>
+									<%if(orderInfo.providerJudgeLevel==20){%>
+										<i class="iconfont icon-badh"></i>
+									<%}else{%>
+										<i class="iconfont icon-bad"></i>
+									<%}%>
+									<figcaption>差评</figcaption>
+								</figure>
+							</div>
+						</div>
+					</div>
+				<%}%>
+			</div>
+		<%}%>	
+	<%} else {%>
+		<div class="main-container">
+			<div class="order-detail">
+				<li class="table">
+					<div class="row">
+						<div class=".menu-item-title-auto">
+							<%=orderInfo.serviceclass%><%if(orderInfo.ordertype==1){%>（周期）<%}%>
+						</div>
+						<div class="menu-item-right">
+							<%if(status=='waitPay'){%>
+								￥<span class="real-price"><%=orderInfo.orderPrice*orderInfo.confirmnum%></span>
+								<%if(orderInfo.confirmnum){%>
+									<%if(orderInfo.serviceclass=='玻璃清洗' || orderInfo.serviceclass=='新居开荒'){%>
+										（<%=orderInfo.confirmnum%><%=orderInfo.serviceclassUnit%>）
+									<%}else if(orderInfo.ordertype==1){%>
+										（<%=orderInfo.cycleList.length%>次）
+									<%}%>
+								<%}%>
+							<%}else{%>
+								<%if(orderInfo.ordernum){%>
+									<%if(orderInfo.serviceclass=='玻璃清洗'){%>
+										￥<%=orderInfo.orderPrice%>
+										（每平米）
+									<%}else{%>
+										￥<%=orderInfo.orderPrice*orderInfo.ordernum%>
+										（<%=orderInfo.ordernum%><%=orderInfo.serviceclassUnit%>）
+									<%}%>
+								<%}%>
+							<%}%>
+						</div>
+					</div>
+				</li>
+				<li class="table">
+					<div class="row">
+						<div class="menu-item-title">
+							上门时间
+						</div>
+						<div>
+							<%if(orderInfo.ordertype==1){%>
+								<%
+									var beginArr=orderInfo.orderAgreedTime.split(' ');
+									var endArr=orderInfo.orderDurationTime.split(' ');
+								%>
+								<%=beginArr[0]%> - <%=endArr[0]%>&nbsp;&nbsp;<%=beginArr[1]%> - <%=endArr[1]%>
+							<%}else{%>
+								<%=orderInfo.orderAgreedTime%>
+							<%}%>					
+						</div>
+					</div>
+				</li>
+				<%if(orderInfo.ordertype==1){%>
+					<%
+						var weekdays=orderInfo.weekdays.split(',');
+						var day1=false,day2=false,day3=false,day4=false,day5=false,day6=false,day7=false;
+						weekdays.forEach(function(e){
+							if(e==1)
+								day1=true;
+							if(e==2)
+								day2=true;
+							if(e==3)
+								day3=true;
+							if(e==4)
+								day4=true;
+							if(e==5)
+								day5=true;
+							if(e==6)
+								day6=true;
+							if(e==7)
+								day7=true;	
+						})
+					%>
+				<li>
+					<div class="fill-week week-no">
+						<%if(day7){%>
+							<div class="fill-current">周日</div>
+						<%}else{%>
+							<div>周日</div>
+						<%}%>
+						<%if(day1){%>
+							<div class="fill-current">周一</div>
+						<%}else{%>
+							<div>周一</div>
+						<%}%>
+						<%if(day2){%>
+							<div class="fill-current">周二</div>
+						<%}else{%>
+							<div>周二</div>
+						<%}%>
+						<%if(day3){%>
+							<div class="fill-current">周三</div>
+						<%}else{%>
+							<div>周三</div>
+						<%}%>
+						<%if(day4){%>
+							<div class="fill-current">周四</div>
+						<%}else{%>
+							<div>周四</div>
+						<%}%>
+						<%if(day5){%>
+							<div class="fill-current">周五</div>
+						<%}else{%>
+							<div>周五</div>
+						<%}%>
+						<%if(day6){%>
+							<div class="fill-current">周六</div>
+						<%}else{%>
+							<div>周六</div>
+						<%}%>
+					</div>
+				</li>
+				<%}%>
+				<li class="table">
+					<div class="row">
+						<div class="menu-item-title">
+							服务地址
+						</div>
+						<div>
+							<%=orderInfo.addressArea%><%=orderInfo.addressHouse%>
+						</div>
+					</div>
+				</li>
+				<li class="table">
+					<div class="row">
+						<div class="menu-item-title">
+							联系人
+						</div>
+						<div>
+							<%=orderInfo.linkman%>
+						</div>
+					</div>
+					<div class="row">
+						<div class="menu-item-title">
+							电话
+						</div>
+						<div>
+							<%=orderInfo.contactMobile%>
+						</div>
+					</div>
+				</li>
+			</div>
+			<% if(status=='waitService'){ %>
+				<div class="wait-service">
+					<div class="submit-box">
+						<a href="tel:13764567708" class="aunt-no">
+							<button type="button" class="btn btn-submit order-btn">呼叫手艺人</button>
+						</a>
+					</div>
+				</div>
+			<%} else if(status=='waitPay'){%>
+				<li class="table" id="use-coupon">
+					<div class="row">
+						<div class="menu-item-title">
+							优惠券
+						</div>
+						<div class="menu-item-right">
+							<span class="coupon-price"></span>
+							<img src='/images/wx/arrow.png' class="arrow-icon"/>
+						</div>
+					</div>
+				</li>
+				<li class="table pay-balance">
+					<div class="row">
+						<div class="menu-item-title balance-icon">
+							<img src='/images/wx/order/detail/balance.png'/>
+							<span>使用账户余额：<%=balance%>元</span>
+						</div>
+
+						<div class="menu-item-right balance-check">
+							<img src='/images/wx/order/detail/uncheck.png'  data-pay-type="balance"/>
+						</div>
+					</div>
+				</li>
+				<li class="table">
+					<div class="row">
+						<div class="menu-item-title">
+							还需支付
+						</div>
+						<div class="menu-item-right pay-more">
+							￥<span class="pay-num"><%=orderInfo.orderPrice*orderInfo.confirmnum%></span>
+						</div>
+					</div>
+				</li>
+				<div class="pay-other">
+					<li class="table">
+						<div class="row">
+							<div class="menu-item-title pay-icon">
+								<img src='/images/wx/order/detail/wei.png'/>
+								<span>微信支付</span>
+							</div>
+							<div class="menu-item-right pay-check">
+								<img src='/images/wx/order/detail/uncheck.png'  data-pay-type="wpay"/>
+							</div>
+						</div>
+					</li>
+					<%if(orderInfo.ordertype!=1){%>
+						<li class="table crash-table">
+							<div class="row">
+								<div class="menu-item-title pay-icon">
+									<img src='/images/wx/order/detail/crash.png'/>
+									<span>现金支付</span>
+								</div>
+								<div class="menu-item-right pay-check">
+									<img src='/images/wx/order/detail/uncheck.png' data-pay-type="crash"/>
+								</div>
+							</div>
+						</li>
+					<%}%>
+				</div>
+				<div class="pay-btn-box">
+					<button type="button" class="btn btn-submit" id="pay-btn">确认支付</button>
+				</div>
+			<%}%>
+		<%}%>
+	</div>
+</div>

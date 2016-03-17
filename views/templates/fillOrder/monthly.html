@@ -1,0 +1,89 @@
+<div class="wrap">
+	<div class="page-overlay"></div>
+	<div class="fill-top">
+		<div class="fill-item fill-week-chip">
+			<p>上门周期</p>
+			<div class="fill-week week-no">
+				<div class="<%if(new Date().getDay()==0){%>fill-current<%}%>" data-weeknum='7'>周日</div>
+				<div class="<%if(new Date().getDay()==1){%>fill-current<%}%>" data-weeknum='1'>周一</div>
+				<div class="<%if(new Date().getDay()==2){%>fill-current<%}%>" data-weeknum='2'>周二</div>
+				<div class="<%if(new Date().getDay()==3){%>fill-current<%}%>" data-weeknum='3'>周三</div>
+				<div class="<%if(new Date().getDay()==4){%>fill-current<%}%>" data-weeknum='4'>周四</div>
+				<div class="<%if(new Date().getDay()==5){%>fill-current<%}%>" data-weeknum='5'>周五</div>
+				<div class="<%if(new Date().getDay()==6){%>fill-current<%}%>" data-weeknum='6'>周六</div>
+			</div>
+		</div>
+		<div class="fill-item fill-time">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe621;</i>
+			</div>
+			<div class="fill-des">
+				<input type='text' id='appDate' placeholder='请选择上门时间及时长' readonly="readonly" required="required"/>
+			</div>
+		</div>
+		<div class="fill-item fill-address">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe61f;</i>
+			</div>
+			<div class="fill-des">
+				<span id='appAddress'>请选择服务地点</span>
+			</div>
+			<div class="arrow">
+				<i class="iconfont icon-arrow">&#xe616;</i>
+			</div>
+		</div>
+		<div class="fill-item fill-phone">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe622;</i>
+			</div>
+			<div class="fill-des">
+				<%if(data&&data.mobile){%>
+				<input type='text' id='appPhone' placeholder='请填写手机号' value="<%=data.mobile%>"/>
+				<%}else{%>
+					<input type='text' id='appPhone' placeholder='请填写手机号' readonly="readonly" />
+				<%}%>
+			</div>
+		</div>
+		<div class="fill-item fill-myAunt">
+			<div class="fill-des go-myAunt">
+				<span id='myAunt'>前去指定手艺人</span>
+			</div>
+			<div class="arrow">
+				<i class="iconfont icon-arrow">&#xe616;</i>
+			</div>
+		</div>
+		<div class="fill-item week-num-chip">
+			<p>请选择服务周数</p>
+			<div class="fill-week weeks-count">
+				<div class="fill-current" data-weeks='1'>一周</div>
+				<div data-weeks='2'>二周</div>
+				<div data-weeks='3'>三周</div>
+				<div data-weeks='4'>四周</div>
+			</div>
+		</div>
+		<div class='fill-week-tips'>
+			<span class="week-time">1</span>次/周 × <span class='week-num'>1</span>周=<span class='week-total'>1</span>次
+		</div>
+	</div>
+	<div class="fill-bot">
+		<div class="fill-item to-aunt">
+			<div class="fill-icon">
+				<i class="iconfont">&#xe61e;</i>
+			</div>
+			<div class="fill-des">
+				<span>给手艺人捎个话</span>
+			</div>
+		</div>
+		<div class="fill-insurance">
+			<p>
+				免费为您投保2万财产损失险
+			</p>
+			<p>
+				以及手艺人5万意外伤害
+			</p>
+		</div>
+	</div>
+</div>
+<div class="fill-btn-box">
+	<button type="button" class="btn btn-submit order-btn">提交订单</button>
+</div>

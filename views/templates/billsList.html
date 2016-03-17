@@ -1,0 +1,31 @@
+
+<%	if(!!data&&!!data.list){
+	for(var i=0;i<data.list.length;i++){%>
+	<div class="bills-item table">
+		<div class="row">
+			<div class="bill-date">
+				<!--<p>周五</p>-->
+				<%if(!data.list[i].servicename){%>
+					<p class="bill-des">
+						充值
+					</p>
+				<%}else{%>
+					<p class="bill-des">
+						<%=data.list[i].servicename%>
+					</p>
+				<%}%>
+				<p><%=data.list[i].paytypename%></p>
+				<p><%=data.list[i].createtime%></p>
+			</div>
+			<%if(data.list[i].money>0){%>
+				<div class="bill-num num-green">
+					+<%=parseFloat(data.list[i].money).toFixed(2)%>
+				</div>
+			<%}else{%>
+				<div class="bill-num num-red">
+					<%=parseFloat(data.list[i].money).toFixed(2)%>
+				</div>
+			<%}%>
+		</div>
+	</div>
+<%}}%>

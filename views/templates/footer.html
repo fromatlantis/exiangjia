@@ -1,0 +1,42 @@
+<%
+	var home = "icon-home";
+	var order = "icon-order";
+	var profile = "icon-profile";
+	if(current==1){
+		home = "icon-homec";
+	}
+	if(current==2){
+		order = "icon-orderc";
+	}
+	if(current==3){
+		profile = "icon-profilec";
+	}
+%>
+<div class="menu">
+	<div class="toolbar home">
+		<a href='home.html'>
+			<figure class="menu-item <%if(current==1){%> menu-current<%}%>">
+		    	<i class="iconfont if-2x <%=home%>"></i>
+		    	<figcaption>首页</figcaption>
+	  		</figure>
+		</a>
+	</div>
+
+	<div class="toolbar order">
+		<a href='order.html'>
+			<figure class="menu-item <%if(current==2){%> menu-current<%}%>">
+		    	<i class="iconfont if-2x <%=order%>"></i>
+		    	<figcaption>订单</figcaption>
+	  		</figure>
+  		</a>
+	</div>
+
+	<div class="toolbar profile">
+		<a href='profile.html'>
+			<figure class="menu-item <%if(current==3){%> menu-current<%}%>">
+		    	<i class="iconfont if-2x <%=profile%>"></i>
+		    	<figcaption>我的</figcaption>
+	  		</figure>
+  		</a>
+	</div>
+</div>
