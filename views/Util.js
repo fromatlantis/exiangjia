@@ -64,7 +64,12 @@ define(function(require,exports,module){
 			if(callback)
         		callback();
 		}else{	
-			var appId='wx9e60458de7e99750';//e享家
+			var appId;
+			if(window.location.host=='shangjia.exiangjia.com'){
+				appId='wxda1ad46a30222ae2';//尚家家政
+			}else{
+				appId='wx9e60458de7e99750';//e享家
+			}
 			//var appId='wx2fe53c9baefe37a5'; //e家净
 			//var appId='wxda1ad46a30222ae2';
 			//var currentUrl=encodeURI(window.location);
@@ -82,7 +87,12 @@ define(function(require,exports,module){
 			sessionStorage.code=code;
 			_getUserInfo(code,callback);
 		}else{
-			var appId='wx9e60458de7e99750';//e享家
+			var appId;
+			if(window.location.host=='shangjia.exiangjia.com'){
+				appId='wxda1ad46a30222ae2';//尚家家政
+			}else{
+				appId='wx9e60458de7e99750';//e享家
+			}
 			//var appId='wx2fe53c9baefe37a5'; //e家净
 			//var appId='wxda1ad46a30222ae2';
 			//var currentUrl=encodeURI(window.location);
@@ -226,8 +236,8 @@ define(function(require,exports,module){
 	        	if(this.records.data==null){
 	        		window.location.href='login.html?code='+code;
 	        	}else{
-	        		var name=this.records.data.wechatName;
-	        		this.records.data.wechatName=decodeURI(name);
+	        		//var name=this.records.data.wechatName;
+	        		//this.records.data.wechatName=decodeURI(name);
 		            sessionStorage.userInfo=JSON.stringify(this.records);
 		            if(callback)
 	            		callback();
